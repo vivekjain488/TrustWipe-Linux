@@ -8,7 +8,16 @@ import argparse
 import sys
 import os
 import time
-from ultra_fast_backend import UltraFastDataWiper, ultra_fast_wipe_sdb, benchmark_wipe_speed
+
+# Add current directory to Python path for imports
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+try:
+    from ultra_fast_backend import UltraFastDataWiper, ultra_fast_wipe_sdb, benchmark_wipe_speed
+except ImportError as e:
+    print(f"❌ Import Error: {e}")
+    print("Make sure ultra_fast_backend.py is in the same directory")
+    sys.exit(1)
 
 class UltraFastCLI:
     """Ultra-fast CLI for maximum performance wiping"""

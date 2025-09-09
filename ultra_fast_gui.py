@@ -8,8 +8,19 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 import threading
 import time
+import sys
+import os
 from datetime import datetime
-from ultra_fast_backend import UltraFastDataWiper, ultra_fast_wipe_sdb
+
+# Add current directory to Python path for imports
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+try:
+    from ultra_fast_backend import UltraFastDataWiper, ultra_fast_wipe_sdb
+except ImportError as e:
+    print(f"❌ Import Error: {e}")
+    print("Make sure ultra_fast_backend.py is in the same directory")
+    sys.exit(1)
 
 class UltraFastTrustWipeGUI:
     def __init__(self, root):

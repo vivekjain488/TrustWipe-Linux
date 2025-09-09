@@ -10,10 +10,22 @@ import os
 import time
 import threading
 import multiprocessing
-import psutil
+import sys
 from datetime import datetime
 import logging
 from concurrent.futures import ThreadPoolExecutor, as_completed
+
+# Try to import psutil, install if missing
+try:
+    import psutil
+except ImportError:
+    print("📦 Installing psutil...")
+    try:
+        subprocess.run([sys.executable, "-m", "pip", "install", "psutil"], check=True, capture_output=True)
+        import psutil
+    except Exception:
+        print("❌ Could not install psutil. Please run: sudo apt install python3-psutil")
+        sys.exit(1)
 
 class UltraFastDataWiper:
     """Ultra-optimized data wiper for maximum speed"""
